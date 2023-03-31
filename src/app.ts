@@ -1,17 +1,20 @@
-import "reflect-metadata"
-import "express-async-errors"
-import express from "express"
-import { usersRouter } from "./router/users.route"
-import { loginRouter } from "./router/login.route"
-import { errorHandler } from "./errors/AppError"
+import "express-async-errors";
+import "reflect-metadata";
+import express, { Request, Response } from "express";
+import { userRoutes } from "./routes/users.routes";
+import { loginRoutes } from "./routes/login.routes";
+import { contactsRoutes } from "./routes/contacts.routes";
+import cors from "cors";
 
+const app = express();
+app.use(express.json());
+app.use(cors());
+app.use("/users", userRoutes);
+app.use("/login", loginRoutes);
+app.use("/contacts", contactsRoutes);
 
-
-const app = express()
-app.use(express.json())
-app.use("/users", usersRouter)
-app.use("/login", loginRouter)
-app.use(errorHandler)
-
-
-export default app
+app.use(express.static("Docs"));
+app.use("/", (req: Request, res: Response) => {
+  res.render("index.html");
+});
+export default app;
