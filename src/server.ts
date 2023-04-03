@@ -1,7 +1,7 @@
 import app from "./app";
 import AppDataSource from "./data-source";
 
-const port = 3000;
+const port = 3001;
 
 (async () => {
 

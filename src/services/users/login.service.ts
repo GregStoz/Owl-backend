@@ -17,6 +17,8 @@ export const loginService = async ( { email, password }: IUserLogin ): Promise<A
         return [403, {message: "User or password invalid"}]
     }
 
+    const userId = user.id;
+
     const passwordMatch = await compare(password, user.password)
 
     if(!passwordMatch){
@@ -37,6 +39,6 @@ export const loginService = async ( { email, password }: IUserLogin ): Promise<A
     )
 
 
-    return [200, {token: token}]
+    return [200, {token: token, userId: userId}]
 
 }

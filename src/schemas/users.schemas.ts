@@ -22,6 +22,7 @@ export const userWithoutPasswordSerializer: yup.SchemaOf<IUserReturn> = yup
     phone: yup.string().notRequired(),
     id: yup.string().notRequired(),
     createdAt: yup.date().notRequired(),
+    updatedAt: yup.date().notRequired(),
     contacts: yup.array(ContactsReturnSerializer).notRequired(),
   });
 export const allUsersWithoutPassword = yup.array(userWithoutPasswordSerializer);

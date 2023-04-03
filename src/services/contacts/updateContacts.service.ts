@@ -16,14 +16,13 @@ export const updateContactService = async (
   if(!contact){
     throw new AppError("Contact not found", 404);
   }
-
-
+  
   const newObj = {
     ...contact,
     ...contactData,
   };
 
-  await contactRepository.save(newObj);
+  await contactRepository.update({id: contactId}, newObj);
  
   return newObj
 };
